@@ -1,0 +1,4 @@
+.vscode
+*.so
+a.out
+test/a.out
