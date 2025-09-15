@@ -2,6 +2,7 @@
 
 int	main(void)
 {
-	_malloc(5);
+	void	*ptr = malloc(5);
+	(void)ptr;
 	return 0;
 }

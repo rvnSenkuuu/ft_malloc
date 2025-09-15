@@ -6,7 +6,7 @@
 #    By: tkara2 <tkara2@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/09/15 12:19:52 by tkara2            #+#    #+#              #
-#    Updated: 2025/09/15 14:50:44 by tkara2           ###   ########.fr        #
+#    Updated: 2025/09/15 15:58:42 by tkara2           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -38,19 +38,22 @@ $(OBJS_DIR)%.o: %.c
 	mkdir -p $(@D)
 	$(CC) $(CFLAGS) -c $< -o $@
 
+TEST_DIR = ./test/
 TEST_SRC = ./test/test.c
 TEST_INC = ./test/test.h
+TEST_OBJS = $(patsubst $(TEST_DIR)%.c,$(TEST_DIR)%,$(TEST_SRC))
 
-test: $(TARGET) $(TEST_INC)
-	$(CC) -Wall -Werror -Wextra -Wl,-rpath=. -Itest $(TEST_SRC) $(TARGET) -o ./test/a.out
-	./test/a.out
+test: $(TARGET) $(TEST_INC) $(TEST_OBJS)
+	LD_PRELOAD=./$(NAME) ./test/test
+
+$(TEST_DIR)/%: $(TEST_DIR)/%.c
+	@$(CC) $(CFLAGS) $< -o $@
 
 clean:
 	$(RM) $(OBJS_DIR)
 
 fclean: clean
-	$(RM) $(TARGET)
-	$(RM) $(NAME)
+	$(RM) $(TARGET) $(NAME) $(TEST_DIR)/*.d $(TEST_OBJS)
 
 re: fclean
 	$(MAKE) all

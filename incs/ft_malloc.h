@@ -6,13 +6,14 @@
 /*   By: tkara2 <tkara2@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/15 12:42:18 by tkara2            #+#    #+#             */
-/*   Updated: 2025/09/15 14:51:24 by tkara2           ###   ########.fr       */
+/*   Updated: 2025/09/15 15:56:11 by tkara2           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef FT_MALLOC_H
 #define FT_MALLOC_H
 
-#include <stdio.h>
+#include <unistd.h>
+#include <string.h>
 
 #endif
